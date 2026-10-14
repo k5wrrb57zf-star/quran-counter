@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المُكرّر الذكي</title>
+  <meta name="theme-color" content="#10b981" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f3f7f5;
+      --card-bg: #ffffff;
+      --text-main: #1f2d24;
+      --text-sub: #64748b;
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --primary-soft: rgba(16, 185, 129, 0.12);
+      --accent: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
+      --shadow-soft: 0 10px 25px rgba(16, 24, 40, 0.06);
+      --border-radius: 28px;
+      --nav-height: 90px;
+    }
+
+    body.dark-mode {
+      --bg-color: #0f172a;
+      --card-bg: #111827;
+      --text-main: #e5eef8;
+      --text-sub: #94a3b8;
+      --primary-soft: rgba(16, 185, 129, 0.12);
+      --shadow: 0 20px 50px rgba(2, 6, 23, 0.45);
+      --shadow-soft: 0 10px 25px rgba(2, 6, 23, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Tajawal", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(to bottom, var(--bg-color), color-mix(in srgb, var(--bg-color) 88%, #ffffff 12%));
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      padding: 18px 16px calc(var(--nav-height) + 26px);
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 8px 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--card-bg);
+      color: var(--text-main);
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+      font-size: 1.35rem;
+      display: grid;
+      place-items: center;
+      transition: transform 0.15s ease;
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+
+    .main-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 28px 20px 22px;
+      margin-top: 4px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(16,185,129,0.08), transparent 45%);
+      pointer-events: none;
+    }
+
+    .section-title {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .section-desc {
+      position: relative;
+      z-index: 1;
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .counter-container {
+      position: relative;
+      width: min(100%, 240px);
+      height: 220px;
+      margin: 0 auto 20px;
+      display: grid;
+      place-items: center;
+      z-index: 1;
+    }
+
+    .progress-ring {
+      width: 200px;
+      height: 200px;
+      transform: rotate(-90deg);
+      overflow: visible;
+    }
+
+    .progress-ring__circle-bg {
+      fill: transparent;
+      stroke: rgba(16, 185, 129, 0.12);
+      stroke-width: 10;
+    }
+
+    .progress-ring__circle {
+      fill: transparent;
+      stroke: var(--primary);
+      stroke-width: 10;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.3s ease;
+    }
+
+    .counter-display {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .counter-value {
+      font-size: clamp(2.7rem, 10vw, 4rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .counter-target-text {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      font-weight: 500;
+    }
+
+    .controls-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .btn-small {
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 16px;
+      background: var(--bg-color);
+      color: var(--text-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.12s ease;
+    }
+
+    .btn-small:active {
+      transform: scale(0.96);
+    }
+
+    .btn-increment {
+      flex: 1;
+      max-width: 260px;
+      height: 64px;
+      border: 0;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-size: 1.35rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(16, 185, 129, 0.28);
+      transition: transform 0.12s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-increment:active {
+      transform: scale(0.98);
+    }
+
+    .chip-group {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      border: 1px solid transparent;
+      background: var(--bg-color);
+      color: var(--text-main);
+      border-radius: 999px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .chip.active {
+      background: var(--primary-soft);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: var(--primary);
+    }
+
+    .nav-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 12px 14px calc(18px + env(safe-area-inset-bottom));
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 -8px 28px rgba(15, 23, 42, 0.08);
+      border-top-left-radius: 26px;
+      border-top-right-radius: 26px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      z-index: 999;
+    }
+
+    body.dark-mode .nav-bar {
+      background: rgba(17, 24, 39, 0.88);
+      box-shadow: 0 -10px 26px rgba(2, 6, 23, 0.32);
+    }
+
+    .nav-item {
+      border: 0;
+      background: transparent;
+      color: var(--text-sub);
+      border-radius: 18px;
+      min-height: 62px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 6px;
+      transition: all 0.2s ease;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .nav-item svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .nav-item.active {
+      color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    @media (min-width: 640px) {
+      body {
+        max-width: 520px;
+        margin: 0 auto;
+        padding-bottom: calc(var(--nav-height) + 32px);
+      }
+
+      .nav-bar {
+        max-width: 520px;
+        margin: 0 auto;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 26px 26px 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2 2 7l10 5 10-5-10-5Zm-8 8 8 4 8-4v5.5l-8 4-8-4V10Zm0 7 8 4 8-4v2.5l-8 4-8-4V17Z" />
+        </svg>
+      </div>
+      <span>المُكرّر الذكي</span>
+    </div>
+
+    <button class="theme-toggle" id="themeBtn" type="button" aria-label="تبديل الوضع الليلي">🌙</button>
+  </header>
+
+  <main class="main-card">
+    <h2 class="section-title" id="tabTitle">تكرار المقطع للحفظ</h2>
+    <p class="section-desc" id="tabDesc">تكرار المقاطع والآيات لتثبيت الحفظ</p>
+
+    <div class="counter-container" aria-live="polite">
+      <svg class="progress-ring" width="200" height="200" aria-hidden="true">
+        <circle class="progress-ring__circle-bg" stroke-width="10" fill="transparent" r="90" cx="100" cy="100"></circle>
+        <circle class="progress-ring__circle" id="progressCircle" stroke-width="10" fill="transparent" r="90" cx="100" cy="100"></circle>
+      </svg>
+
+      <div class="counter-display">
+        <span class="counter-value" id="countVal">0</span>
+        <span class="counter-target-text">الهدف: <span id="targetVal">20</span> تكرار</span>
+      </div>
+    </div>
+
+    <div class="controls-row">
+      <button class="btn-small" type="button" onclick="decrement()" aria-label="نقص واحد">➖</button>
+      <button class="btn-increment" type="button" onclick="increment()" aria-label="زيادة تكرار واحد">
+        <span>تكرار +1</span>
+      </button>
+      <button class="btn-small" type="button" onclick="resetCount()" aria-label="إعادة العداد">🔄</button>
+    </div>
+
+    <div class="chip-group" id="targetChips">
+      <span class="chip active" data-target="20" onclick="setTarget(20, this)">20 مرة</span>
+      <span class="chip" data-target="10" onclick="setTarget(10, this)">10 مرات</span>
+      <span class="chip" data-target="33" onclick="setTarget(33, this)">33 مرة</span>
+      <span class="chip" data-target="100" onclick="setTarget(100, this)">100 مرة</span>
+    </div>
+  </main>
+
+  <nav class="nav-bar" aria-label="التنقل بين الأقسام">
+    <button class="nav-item active" type="button" onclick="switchTab('quran', this)">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 14.55c-.97 0-1.75-.78-1.75-1.75S9.03 14.05 10 14.05s1.75.78 1.75 1.75-.78 1.75-1.75 1.75z"/>
+      </svg>
+      <span>تكرار القرآن</span>
+    </button>
+
+    <button class="nav-item" type="button" onclick="switchTab('azkar', this)">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2zm0 2a8 8 0 1 1-8 8 8.01 8.01 0 0 1 8-8zm1 3v6h4v2h-6V7z"/>
+      </svg>
+      <span>الأذكار</span>
+    </button>
+
+    <button class="nav-item" type="button" onclick="switchTab('custom', this)">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"/>
+      </svg>
+      <span>عداد حر</span>
+    </button>
+  </nav>
+
+  <script>
+    const radius = 90;
+    const circumference = 2 * Math.PI * radius;
+
+    let currentTab = 'quran';
+    let data = {
+      quran: { count: 0, target: 20 },
+      azkar: { count: 0, target: 33 },
+      custom: { count: 0, target: 100 }
+    };
+
+    const storageKey = 'smart_counter_data_v1';
+    const themeKey = 'smart_counter_theme';
+
+    function loadState() {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          data = { ...data, ...parsed };
+        } catch (error) {
+          console.warn('Failed to parse saved counter state:', error);
+        }
+      }
+
+      const savedTheme = localStorage.getItem(themeKey);
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+      updateThemeButton();
+    }
+
+    function saveState() {
+      localStorage.setItem(storageKey, JSON.stringify(data));
+    }
+
+    function saveTheme() {
+      localStorage.setItem(themeKey, document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    function updateThemeButton() {
+      const btn = document.getElementById('themeBtn');
+      btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+
+    function getCurrentItem() {
+      return data[currentTab];
+    }
+
+    function updateProgressRing() {
+      const circle = document.getElementById('progressCircle');
+      const item = getCurrentItem();
+      const percent = Math.min(item.count / item.target, 1);
+      const offset = circumference - (percent * circumference);
+
+      circle.style.strokeDasharray = `${circumference} ${circumference}`;
+      circle.style.strokeDashoffset = offset;
+    }
+
+    function updateTargetChips() {
+      const item = getCurrentItem();
+      const chips = document.querySelectorAll('.chip');
+
+      chips.forEach(chip => {
+        chip.classList.toggle('active', Number(chip.dataset.target) === Number(item.target));
+      });
+    }
+
+    function updateUI() {
+      const item = getCurrentItem();
+
+      document.getElementById('countVal').textContent = item.count;
+      document.getElementById('targetVal').textContent = item.target;
+
+      updateProgressRing();
+      updateTargetChips();
+      saveState();
+    }
+
+    function increment() {
+      getCurrentItem().count += 1;
+      if (navigator.vibrate) navigator.vibrate(30);
+      updateUI();
+    }
+
+    function decrement() {
+      if (getCurrentItem().count > 0) {
+        getCurrentItem().count -= 1;
+        updateUI();
+      }
+    }
+
+    function resetCount() {
+      if (confirm('هل تريد إعادة العداد إلى الصفر؟')) {
+        getCurrentItem().count = 0;
+        updateUI();
+      }
+    }
+
+    function setTarget(newTarget, el) {
+      const item = getCurrentItem();
+      item.target = newTarget;
+
+      if (el) {
+        document.querySelectorAll('.chip').forEach(chip => chip.classList.remove('active'));
+        el.classList.add('active');
+      } else {
+        updateTargetChips();
+      }
+
+      updateUI();
+    }
+
+    function switchTab(tab, el) {
+      currentTab = tab;
+
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+      el.classList.add('active');
+
+      const title = document.getElementById('tabTitle');
+      const desc = document.getElementById('tabDesc');
+
+      if (tab === 'quran') {
+        title.textContent = 'تكرار المقطع للحفظ';
+        desc.textContent = 'تكرار المقاطع والآيات لتثبيت الحفظ';
+      } else if (tab === 'azkar') {
+        title.textContent = 'عداد الأذكار والتسبيح';
+        desc.textContent = 'سبحة أذكار إلكترونية منظمة';
+      } else {
+        title.textContent = 'عداد مخصص وحر';
+        desc.textContent = 'لأي تكرار عام أو ورد خاص';
+      }
+
+      updateUI();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      updateThemeButton();
+      saveTheme();
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+        increment();
+      } else if (event.key === 'ArrowDown' || event.key === 'PageDown') {
+        decrement();
+      } else if (event.key === 'r' || event.key === 'R') {
+        resetCount();
+      }
+    });
+
+    window.addEventListener('load', function () {
+      loadState();
+      updateUI();
+
+      // Initialize SVG stroke length after DOM load
+      const circle = document.getElementById('progressCircle');
+      circle.style.strokeDasharray = `${circumference} ${circumference}`;
+      circle.style.strokeDashoffset = circumference;
+    });
+  </script>
+</body>
+</html>
