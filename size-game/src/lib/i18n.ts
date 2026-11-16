@@ -40,6 +40,9 @@ const STR = {
   yourRatio: { ar: "نسبتك", en: "Your ratio" },
   error: { ar: "الخطأ", en: "Error" },
   accuracy: { ar: "الدقة", en: "Accuracy" },
+  match: { ar: "نسبة التطابق", en: "Match" },
+  biggerBy: { ar: "أكبر بـ", en: "too big by" },
+  smallerBy: { ar: "أصغر بـ", en: "too small by" },
   points: { ar: "نقطة", en: "pts" },
   tooBig: { ar: "أكبر من الحقيقة", en: "too big" },
   tooSmall: { ar: "أصغر من الحقيقة", en: "too small" },
@@ -147,7 +150,7 @@ export function dimLabel(lang: Lang, s: Subject, key: Key): string {
 export function comparisonSentence(lang: Lang, key: Key, big: Subject, small: Subject, ratio: string, sphereMix: boolean) {
   const B = nameOf(big, lang), S = nameOf(small, lang);
   if (lang === "ar") {
-    const adj = key === "d" ? "أكبر قطرًا" : sphereMix ? "أكبر" : key === "h" ? "أطول (أعلى)" : "أطول";
+    const adj = key === "d" ? "أكبر قطرًا" : sphereMix ? "أكبر" : key === "h" ? "أطول" : "أطول";
     return `${B} ${adj} من ${S} بـ ${ratio} مرة`;
   }
   const adj = key === "d" ? "wider" : sphereMix ? "bigger" : key === "h" ? "taller" : "longer";

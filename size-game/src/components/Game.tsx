@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { DiffChoice, Guess, Lang, Player, Round, Subject } from "../lib/types";
+import type { DiffChoice, Guess, Lang, Player, Round } from "../lib/types";
 import { difficultyFor, kFromPos, makeRound, pairKey } from "../lib/pairs";
 import { scoreGuess } from "../lib/score";
-import { nameOf, question, t } from "../lib/i18n";
+import { question, t } from "../lib/i18n";
 import { fmtInt } from "../lib/format";
 import { hashString, mulberry32, type Rng } from "../lib/rng";
 import { Stage, type Ghost, type StageHandle } from "./Stage";
@@ -82,7 +82,6 @@ export function Game({ config, lang, recentPairs, onRoundDone, onFinish, onQuit 
   const [players, setPlayers] = useState<Player[] | undefined>(config.players);
   const [resetN, setResetN] = useState(0);
   const [ghosts, setGhosts] = useState<Ghost[]>([]);
-  const [photo, setPhoto] = useState<Subject | null>(null);
   const stage = useRef<StageHandle>(null);
   const posRef = useRef(0);
 
@@ -161,11 +160,10 @@ export function Game({ config, lang, recentPairs, onRoundDone, onFinish, onQuit 
     <div className={"game phase-" + phase}>
       <header className="game-bar">
         <button className="icon-btn" onClick={() => (total == null && results.length ? onFinish(results, players) : onQuit())} aria-label={t(lang, "home")}>
-          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
         </button>
-        <div className="game-progress">
-          <span className="label">{t(lang, "round")}</span>
-          <span className="value" dir="ltr">{counter}</span>
+        <div className="game-progress" dir="ltr">
+          <span className="value">{counter}</span>
           {total != null && (
             <div className="progress-bar"><i style={{ width: `${((index + (phase === "revealed" ? 1 : 0)) / total) * 100}%` }} /></div>
           )}
@@ -180,35 +178,20 @@ export function Game({ config, lang, recentPairs, onRoundDone, onFinish, onQuit 
               ))}
             </div>
           ) : (
-            <>
-              <span className="label">{t(lang, "score")}</span>
-              <span className="value" dir="ltr">{fmtInt(runScore)}</span>
-            </>
+            <span className="value"><bdi dir="ltr">{fmtInt(runScore)}</bdi> <small>{t(lang, "points")}</small></span>
           )}
         </div>
       </header>
 
-      <div className="game-main">
-        <section className="game-stage-wrap">
-          <h1 className="game-question" key={round.a.id + round.b.id}>
-            {party && phase !== "revealed" && (
-              <span className="turn-tag" style={{ ["--pc" as string]: players![turn].color }}>{players![turn].name}</span>
-            )}
-            {question(lang, round.key, round.a, round.b)}
-          </h1>
-          <div className="subject-cards" dir="ltr">
-            {[round.a, round.b].map((s, i) => (
-              <button key={s.id} className={"subject-card " + (i ? "is-b" : "is-a")} onClick={() => setPhoto(s)}>
-                <img src={s.ref} alt="" decoding="async" />
-                <span dir={lang === "ar" ? "rtl" : "ltr"}>
-                  <small>{i ? t(lang, "challenge") : t(lang, "reference")}</small>
-                  {nameOf(s, lang)}
-                </span>
-              </button>
-            ))}
-          </div>
-          <div className="stage-box">
-          <div className="diff-tag" data-d={round.difficulty}>{t(lang, round.difficulty)}</div>
+      <h1 className="game-question" key={round.a.id + round.b.id}>
+        {party && phase !== "revealed" && (
+          <span className="turn-tag" style={{ ["--pc" as string]: players![turn].color }}>{players![turn].name}</span>
+        )}
+        {question(lang, round.key, round.a, round.b)}
+      </h1>
+
+      <div className="game-body">
+        <div className="stage-box">
           <Stage
             ref={stage}
             round={round}
@@ -217,10 +200,7 @@ export function Game({ config, lang, recentPairs, onRoundDone, onFinish, onQuit 
             ghosts={ghosts}
             revealed={phase === "revealed"}
           />
-          {phase === "revealed" && !party && <div className="stage-legend"><i />{t(lang, "tapToCompare")}</div>}
-          </div>
-        </section>
-
+        </div>
         {phase === "revealed" && (
           <aside className="game-panel">
             <Reveal
@@ -237,33 +217,20 @@ export function Game({ config, lang, recentPairs, onRoundDone, onFinish, onQuit 
 
       {phase !== "revealed" && (
         <footer className="game-dock">
-          <div className="dock-hint">{t(lang, "dragHint")}</div>
-          <div className="dock-row">
-            <button className="btn btn-ghost dock-reset" onClick={() => setResetN((n) => n + 1)}>
-              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              <span>{t(lang, "reset")}</span>
-            </button>
-            <SizeSlider
-              start={round.startPos}
-              resetKey={`${index}-${turn}-${resetN}`}
-              lang={lang}
-              disabled={phase !== "guess"}
-              onChange={onSlide}
-            />
-            <button className="btn btn-primary dock-reveal" onClick={lockIn} disabled={phase !== "guess"}>
-              {party && guesses.length < players!.length - 1 ? t(lang, "lockIn") : t(lang, "reveal")}
-            </button>
-          </div>
+          <button className="icon-btn" onClick={() => setResetN((n) => n + 1)} aria-label={t(lang, "reset")}>
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </button>
+          <SizeSlider
+            start={round.startPos}
+            resetKey={`${index}-${turn}-${resetN}`}
+            lang={lang}
+            disabled={phase !== "guess"}
+            onChange={onSlide}
+          />
+          <button className="btn btn-primary dock-reveal" onClick={lockIn} disabled={phase !== "guess"}>
+            {party && guesses.length < players!.length - 1 ? t(lang, "lockIn") : t(lang, "reveal")}
+          </button>
         </footer>
-      )}
-
-      {photo && (
-        <div className="lightbox" role="dialog" onClick={() => setPhoto(null)}>
-          <figure>
-            <img src={photo.ref} alt={nameOf(photo, lang)} />
-            <figcaption>{nameOf(photo, lang)}</figcaption>
-          </figure>
-        </div>
       )}
 
       {phase === "handoff" && party && (

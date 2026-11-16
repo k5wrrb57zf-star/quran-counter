@@ -92,7 +92,7 @@ export function Home({ lang, saved, onStart, onOpen, onPartyNames }: Props) {
             </button>
             {CATEGORIES.filter((c) => (counts[c] ?? 0) >= 5).map((c) => (
               <button key={c} className={"chip-btn" + (cat === c ? " is-on" : "")} onClick={() => setCat(c)}>
-                {CAT_LABEL[c][lang]} <small dir="ltr">{counts[c]}</small>
+                {CAT_LABEL[c][lang]}
               </button>
             ))}
           </div>

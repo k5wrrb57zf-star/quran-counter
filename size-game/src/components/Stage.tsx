@@ -31,23 +31,23 @@ interface Box { x: number; y: number; w: number; h: number }
  * challenge outgrows the frame, so the true proportions are always preserved.
  */
 function layout(W: number, H: number, a: Subject, b: Subject, k: number, extraK: number[]) {
-  const pad = Math.max(14, W * 0.035);
-  const top = Math.max(28, H * 0.08);
-  const ground = H - Math.max(46, H * 0.12);
+  // both objects sit side by side, centred, as large as the stage allows
+  const pad = Math.max(12, W * 0.03);
+  const top = Math.max(14, H * 0.04);
+  const ground = H - Math.max(44, H * 0.09);
   const usableH = ground - top;
-  const gap = Math.max(18, W * 0.04);
-  const split = W * 0.44; // reference's right edge
-  const kMax = Math.max(k, ...extraK);
+  const gap = Math.max(14, W * 0.03);
+  // a guess outline is kept in frame unless it is wildly too big (then it is allowed to overflow)
+  const kMax = Math.max(k, ...extraK.map((g) => Math.min(g, k * 2.5)));
   const bw = b.w * kMax, bh = b.h * kMax;
-  // metres -> px
-  let z = Math.min((usableH * 0.82) / a.h, (split - pad) / a.w); // the reference's "home" size
-  z = Math.min(z, usableH / Math.max(a.h, bh), (W - split - gap - pad) / bw);
-  const A: Box = { w: a.w * z, h: a.h * z, x: 0, y: 0 };
-  A.x = split - A.w;
+  const z = Math.min((usableH * 0.96) / Math.max(a.h, bh), (W - 2 * pad - gap) / (a.w + bw)); // metres -> px
+  const x0 = (W - ((a.w + bw) * z + gap)) / 2;
+  const A: Box = { w: a.w * z, h: a.h * z, x: x0, y: 0 };
   A.y = ground - A.h;
+  const bx = x0 + A.w + gap;
   const boxB = (kk: number): Box => {
     const w = b.w * kk * z, h = b.h * kk * z;
-    return { w, h, x: split + gap, y: ground - h };
+    return { w, h, x: bx, y: ground - h };
   };
   return { A, B: boxB(k), boxB, ground, z };
 }
@@ -99,10 +99,20 @@ export const Stage = forwardRef<StageHandle, Props>(function Stage({ round, lang
     };
     place(imgA.current, a, L.A);
     place(imgB.current, b, L.B);
+    let minX = 6;
     const lab = (el: HTMLDivElement | null, box: Box, align: "end" | "start") => {
       if (!el) return;
-      const cx = align === "end" ? box.x + box.w : box.x;
-      el.style.transform = `translate3d(${cx}px, ${L.ground + 10}px, 0) translateX(${align === "end" ? "-100%" : "0"})`;
+      const lw = Number(el.dataset.w) || (el.dataset.w = String(el.offsetWidth), el.offsetWidth);
+      // A's name ends at its right edge, B's starts at its left edge; both stay inside the frame
+      let x = align === "end" ? box.x + box.w - lw : box.x;
+      x = Math.max(6, Math.min(W - lw - 6, x));
+      let y = L.ground + 10;
+      if (x < minX) {
+        // not enough room beside the other name: drop to a second line instead of overlapping
+        y += 17;
+      }
+      minX = x + lw + 10;
+      el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     };
     lab(labelA.current, L.A, "end");
     lab(labelB.current, L.B, "start");
@@ -193,10 +203,10 @@ export const Stage = forwardRef<StageHandle, Props>(function Stage({ round, lang
       <SubjectImg key={"b" + round.b.id} s={round.b} imgRef={imgB} className="stage-img stage-img-b" />
       <div className="stage-pin" ref={pinA}><i /></div>
       <div className="stage-pin" ref={pinB}><i /></div>
-      <div className="stage-label stage-label-a" ref={labelA} dir={lang === "ar" ? "rtl" : "ltr"}>
+      <div key={"la" + round.a.id} className="stage-label stage-label-a" ref={labelA} dir={lang === "ar" ? "rtl" : "ltr"}>
         {nameOf(round.a, lang)}
       </div>
-      <div className="stage-label stage-label-b" ref={labelB} dir={lang === "ar" ? "rtl" : "ltr"}>
+      <div key={"lb" + round.b.id} className="stage-label stage-label-b" ref={labelB} dir={lang === "ar" ? "rtl" : "ltr"}>
         {nameOf(round.b, lang)}
       </div>
     </div>
