@@ -90,7 +90,7 @@ export function Home({ lang, saved, onStart, onOpen, onPartyNames }: Props) {
             <button className={"chip-btn" + (cat === "all" ? " is-on" : "")} onClick={() => setCat("all")}>
               {t(lang, "all")}
             </button>
-            {CATEGORIES.filter((c) => counts[c]).map((c) => (
+            {CATEGORIES.filter((c) => (counts[c] ?? 0) >= 5).map((c) => (
               <button key={c} className={"chip-btn" + (cat === c ? " is-on" : "")} onClick={() => setCat(c)}>
                 {CAT_LABEL[c][lang]} <small dir="ltr">{counts[c]}</small>
               </button>

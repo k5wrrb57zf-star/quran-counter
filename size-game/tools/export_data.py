@@ -59,7 +59,7 @@ for s in SUBJECTS:
     if note and note not in NOTE_AR:
         print("missing Arabic note:", note)
     out.append(dict(
-        id=s["id"], cat=s["cat"], en=s["en"].split(" (")[0] if s["id"] not in ("steve",) else s["en"],
+        id=s["id"], cat="pop" if s["cat"] == "anime" else s["cat"], en=s["en"].split(" (")[0] if s["id"] not in ("steve",) else s["en"],
         ar=s["ar"], conf=s["conf"], src=s["src"], tier=s["tier"],
         note=note, noteAr=NOTE_AR.get(note) if note else None,
         dims=dims,

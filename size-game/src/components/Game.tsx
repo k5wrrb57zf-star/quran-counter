@@ -89,7 +89,7 @@ export function Game({ config, lang, recentPairs, onRoundDone, onFinish, onQuit 
   const round = rounds[index];
   const party = !!players && players.length > 1;
   const total = config.total;
-  const runScore = results.reduce((s, r) => s + r.guesses[0].score, 0) + (phase === "revealed" && !party ? guesses[0]?.score ?? 0 : 0);
+  const runScore = results.reduce((s, r) => s + r.guesses[0].score, 0); // includes the revealed round
 
   useEffect(() => {
     preload(rounds[index + 1]);

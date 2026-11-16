@@ -2991,40 +2991,40 @@
  "lion": {
   "cut": "img/cut/ae83885a6091.webp",
   "ref": "img/ref/ae83885a6091.webp",
-  "cw": 650,
-  "ch": 467,
+  "cw": 632,
+  "ch": 496,
   "rw": 720,
-  "rh": 540,
-  "file": "File:Lion waiting in Namibia.jpg",
-  "page": "https://commons.wikimedia.org/wiki/File:Lion_waiting_in_Namibia.jpg",
-  "artist": "Kevin Pluck",
-  "license": "CC BY 2.0",
+  "rh": 560,
+  "file": "File:Big male New Zealand Sea Lion walking on the beach.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Big_male_New_Zealand_Sea_Lion_walking_on_the_beach.jpg",
+  "artist": "Pseudopanax at English Wikipedia",
+  "license": "Public domain",
   "nonfree": false,
   "score": 0.0,
   "ev": {
    "touch": [],
-   "cover": 0.227,
-   "fill": 0.529,
+   "cover": 0.234,
+   "fill": 0.538,
    "bbox": [
-    179,
-    118,
-    826,
-    575
+    211,
+    143,
+    840,
+    637
    ]
   },
   "tried": [
    {
-    "title": "File:Lion waiting in Namibia.jpg",
+    "title": "File:Big male New Zealand Sea Lion walking on the beach.jpg",
     "score": 0.0,
     "ev": {
      "touch": [],
-     "cover": 0.227,
-     "fill": 0.529,
+     "cover": 0.234,
+     "fill": 0.538,
      "bbox": [
-      179,
-      118,
-      826,
-      575
+      211,
+      143,
+      840,
+      637
      ]
     },
     "how": "rembg"
@@ -5917,10 +5917,10 @@
  "megalodon": {
   "cut": "img/cut/41027ca19a5e.webp",
   "ref": "img/ref/41027ca19a5e.webp",
-  "cw": 900,
-  "ch": 421,
-  "rw": 720,
-  "rh": 360,
+  "cw": 456,
+  "ch": 207,
+  "rw": 480,
+  "rh": 240,
   "file": "File:Otodus megalodon skeleatal.png",
   "page": "https://commons.wikimedia.org/wiki/File:Otodus_megalodon_skeleatal.png",
   "artist": "EvolutionIncarnate",
@@ -5929,13 +5929,13 @@
   "score": 0.0,
   "ev": {
    "touch": [],
-   "cover": 0.22,
-   "fill": 0.252,
+   "cover": 0.237,
+   "fill": 0.293,
    "bbox": [
     19,
     19,
-    948,
-    452
+    473,
+    223
    ]
   },
   "tried": [
@@ -5944,13 +5944,13 @@
     "score": 0.0,
     "ev": {
      "touch": [],
-     "cover": 0.22,
-     "fill": 0.252,
+     "cover": 0.237,
+     "fill": 0.293,
      "bbox": [
       19,
       19,
-      948,
-      452
+      473,
+      223
      ]
     },
     "how": "alpha"
@@ -5960,43 +5960,119 @@
  "mammoth": {
   "cut": "img/cut/35a09faca316.webp",
   "ref": "img/ref/35a09faca316.webp",
-  "cw": 900,
-  "ch": 333,
-  "rw": 720,
-  "rh": 437,
-  "file": "File:Woolly mammoth (Mammuthus primigenius) - Mauricio Antón.jpg",
-  "page": "https://commons.wikimedia.org/wiki/File:Woolly_mammoth_(Mammuthus_primigenius)_-_Mauricio_Ant%C3%B3n.jpg",
-  "artist": "Mauricio Antón",
-  "license": "CC BY 2.5",
+  "cw": 264,
+  "ch": 602,
+  "rw": 208,
+  "rh": 720,
+  "file": "File:202003 Woolly mammoth.png",
+  "page": "https://commons.wikimedia.org/wiki/File:202003_Woolly_mammoth.png",
+  "artist": "DataBase Center for Life Science (DBCLS)",
+  "license": "CC BY 4.0",
   "nonfree": false,
   "score": 0.0,
   "ev": {
-   "touch": [],
-   "cover": 0.228,
-   "fill": 0.397,
+   "touch": [
+    "right"
+   ],
+   "cover": 0.145,
+   "fill": 0.246,
    "bbox": [
-    24,
-    134,
-    945,
-    481
+    16,
+    91,
+    277,
+    689
    ]
   },
   "tried": [
    {
     "title": "File:Woolly mammoth (Mammuthus primigenius) - Mauricio Antón.jpg",
-    "score": 0.0,
+    "score": -3.0,
     "ev": {
-     "touch": [],
-     "cover": 0.228,
-     "fill": 0.397,
+     "touch": [
+      "right"
+     ],
+     "cover": 0.249,
+     "fill": 0.578,
      "bbox": [
-      24,
-      134,
-      945,
-      481
+      73,
+      139,
+      277,
+      479
      ]
     },
     "how": "rembg"
+   },
+   {
+    "title": "File:Woolly Mammoth-RBC.jpg",
+    "score": -3.0,
+    "ev": {
+     "touch": [
+      "right"
+     ],
+     "cover": 0.078,
+     "fill": 0.255,
+     "bbox": [
+      78,
+      53,
+      277,
+      335
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:Woolly mammoth Christman.jpg",
+    "score": -3.0,
+    "ev": {
+     "touch": [
+      "right"
+     ],
+     "cover": 0.04,
+     "fill": 0.124,
+     "bbox": [
+      28,
+      153,
+      277,
+      369
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:Woolly mammoth reconstruction, from Abel, O. (1919). Die Stämme der Wirbeltiere.jpg",
+    "score": -7.0,
+    "ev": {
+     "touch": [
+      "right"
+     ],
+     "cover": 0.029,
+     "fill": 0.073,
+     "bbox": [
+      60,
+      133,
+      277,
+      445
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:202003 Woolly mammoth.png",
+    "score": 0.0,
+    "ev": {
+     "touch": [
+      "right"
+     ],
+     "cover": 0.145,
+     "fill": 0.246,
+     "bbox": [
+      16,
+      91,
+      277,
+      689
+     ]
+    },
+    "how": "alpha"
    }
   ]
  },
@@ -9006,40 +9082,74 @@
  "burjkhalifa": {
   "cut": "img/cut/855d43bbb1d9.webp",
   "ref": "img/ref/855d43bbb1d9.webp",
-  "cw": 293,
-  "ch": 390,
+  "cw": 144,
+  "ch": 460,
   "rw": 720,
-  "rh": 481,
-  "file": "File:Burj Khalifa (worlds tallest building) and the Dubai skyline (25781049892).jpg",
-  "page": "https://commons.wikimedia.org/wiki/File:Burj_Khalifa_(worlds_tallest_building)_and_the_Dubai_skyline_(25781049892).jpg",
-  "artist": "imran shahabuddin",
+  "rh": 540,
+  "file": "File:View from Burj Khalifa (5135429129).jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:View_from_Burj_Khalifa_(5135429129).jpg",
+  "artist": "rp72",
   "license": "CC BY 2.0",
   "nonfree": false,
-  "score": -4.0,
+  "score": 0.0,
   "ev": {
    "touch": [],
-   "cover": 0.007,
-   "fill": 0.038,
+   "cover": 0.047,
+   "fill": 0.498,
    "bbox": [
-    202,
-    27,
-    475,
-    414
+    119,
+    38,
+    260,
+    496
    ]
   },
   "tried": [
    {
-    "title": "File:Burj Khalifa (worlds tallest building) and the Dubai skyline (25781049892).jpg",
-    "score": -4.0,
+    "title": "File:Burj Khalifa Sign.jpg",
+    "score": -3.0,
+    "ev": {
+     "touch": [
+      "right"
+     ],
+     "cover": 0.13,
+     "fill": 0.302,
+     "bbox": [
+      61,
+      40,
+      959,
+      333
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:Dubai skyline 2010 (censored Burj Khalifa).jpg",
+    "score": -3.0,
     "ev": {
      "touch": [],
-     "cover": 0.007,
-     "fill": 0.038,
+     "cover": 0.012,
+     "fill": 0.461,
      "bbox": [
-      202,
-      27,
-      475,
-      414
+      634,
+      128,
+      673,
+      491
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:View from Burj Khalifa (5135429129).jpg",
+    "score": 0.0,
+    "ev": {
+     "touch": [],
+     "cover": 0.047,
+     "fill": 0.498,
+     "bbox": [
+      119,
+      38,
+      260,
+      496
      ]
     },
     "how": "rembg"
@@ -9049,53 +9159,43 @@
  "eiffel": {
   "cut": "img/cut/2eec48728a3a.webp",
   "ref": "img/ref/2eec48728a3a.webp",
-  "cw": 702,
+  "cw": 383,
   "ch": 900,
-  "rw": 562,
+  "rw": 389,
   "rh": 720,
-  "file": "File:Eiffel Tower logo.svg",
-  "page": "https://en.wikipedia.org/wiki/File:Eiffel_Tower_logo.svg",
-  "artist": "",
-  "license": "Fair use",
-  "nonfree": true,
-  "score": -1.0,
+  "file": "File:Tour Eiffel Wikimedia Commons.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Tour_Eiffel_Wikimedia_Commons.jpg",
+  "artist": "Benh LIEU SONG",
+  "license": "Public domain",
+  "nonfree": false,
+  "score": 0.0,
   "ev": {
-   "touch": [
-    "top",
-    "bottom",
-    "left",
-    "right"
-   ],
-   "cover": 0.111,
-   "fill": 0.111,
+   "touch": [],
+   "cover": 0.124,
+   "fill": 0.277,
    "bbox": [
-    0,
-    0,
-    959,
-    1229
+    192,
+    132,
+    760,
+    1473
    ]
   },
   "tried": [
    {
-    "title": "File:Eiffel Tower logo.svg",
-    "score": -1.0,
+    "title": "File:Tour Eiffel Wikimedia Commons.jpg",
+    "score": 0.0,
     "ev": {
-     "touch": [
-      "top",
-      "bottom",
-      "left",
-      "right"
-     ],
-     "cover": 0.111,
-     "fill": 0.111,
+     "touch": [],
+     "cover": 0.124,
+     "fill": 0.277,
      "bbox": [
-      0,
-      0,
-      959,
-      1229
+      192,
+      132,
+      760,
+      1473
      ]
     },
-    "how": "alpha"
+    "how": "rembg"
    }
   ]
  },
@@ -11987,39 +12087,43 @@
  "wadlow": {
   "cut": "img/cut/a60f08eb5de3.webp",
   "ref": "img/ref/a60f08eb5de3.webp",
-  "cw": 440,
+  "cw": 236,
   "ch": 900,
-  "rw": 439,
+  "rw": 245,
   "rh": 720,
   "file": "File:Robert Wadlow postcard.jpg",
   "page": "https://commons.wikimedia.org/wiki/File:Robert_Wadlow_postcard.jpg",
   "artist": "Unknown authorUnknown author",
   "license": "Public domain",
   "nonfree": false,
-  "score": 0.0,
+  "score": -3.0,
   "ev": {
-   "touch": [],
-   "cover": 0.362,
-   "fill": 0.523,
+   "touch": [
+    "right"
+   ],
+   "cover": 0.447,
+   "fill": 0.651,
    "bbox": [
-    135,
+    136,
     42,
-    857,
+    536,
     1489
    ]
   },
   "tried": [
    {
     "title": "File:Robert Wadlow postcard.jpg",
-    "score": 0.0,
+    "score": -3.0,
     "ev": {
-     "touch": [],
-     "cover": 0.362,
-     "fill": 0.523,
+     "touch": [
+      "right"
+     ],
+     "cover": 0.447,
+     "fill": 0.651,
      "bbox": [
-      135,
+      136,
       42,
-      857,
+      536,
       1489
      ]
     },
@@ -12122,10 +12226,10 @@
  "iphone": {
   "cut": "img/cut/1b9325a6e5ce.webp",
   "ref": "img/ref/1b9325a6e5ce.webp",
-  "cw": 900,
-  "ch": 431,
-  "rw": 720,
-  "rh": 540,
+  "cw": 201,
+  "ch": 402,
+  "rw": 240,
+  "rh": 720,
   "file": "File:Apple iPhone 15 Pro.jpg",
   "page": "https://commons.wikimedia.org/wiki/File:Apple_iPhone_15_Pro.jpg",
   "artist": "IPHONE 15",
@@ -12134,30 +12238,30 @@
   "score": 0.0,
   "ev": {
    "touch": [],
-   "cover": 0.435,
-   "fill": 0.763,
+   "cover": 0.445,
+   "fill": 0.976,
    "bbox": [
     27,
-    166,
-    934,
-    599
+    201,
+    224,
+    598
    ]
   },
   "tried": [
    {
     "title": "File:IPhone 15 Pro Vector.svg",
-    "score": -6.0,
+    "score": -7.0,
     "ev": {
      "touch": [
-      "top",
-      "bottom"
+      "bottom",
+      "left"
      ],
-     "cover": 0.156,
-     "fill": 0.162,
+     "cover": 0.079,
+     "fill": 0.1,
      "bbox": [
-      31,
       0,
-      953,
+      354,
+      231,
       1968
      ]
     },
@@ -12168,13 +12272,13 @@
     "score": 0.0,
     "ev": {
      "touch": [],
-     "cover": 0.435,
-     "fill": 0.763,
+     "cover": 0.445,
+     "fill": 0.976,
      "bbox": [
       27,
-      166,
-      934,
-      599
+      201,
+      224,
+      598
      ]
     },
     "how": "rembg"
@@ -12969,9 +13073,9 @@
  "guitar": {
   "cut": "img/cut/4c7e37101e3b.webp",
   "ref": "img/ref/4c7e37101e3b.webp",
-  "cw": 555,
+  "cw": 337,
   "ch": 900,
-  "rw": 473,
+  "rw": 293,
   "rh": 720,
   "file": "File:Classical Guitar two views2.png",
   "page": "https://commons.wikimedia.org/wiki/File:Classical_Guitar_two_views2.png",
@@ -12981,13 +13085,13 @@
   "score": 0.0,
   "ev": {
    "touch": [],
-   "cover": 0.275,
-   "fill": 0.413,
+   "cover": 0.316,
+   "fill": 0.468,
    "bbox": [
     116,
     129,
-    858,
-    1384
+    584,
+    1378
    ]
   },
   "tried": [
@@ -12996,13 +13100,13 @@
     "score": 0.0,
     "ev": {
      "touch": [],
-     "cover": 0.275,
-     "fill": 0.413,
+     "cover": 0.316,
+     "fill": 0.468,
      "bbox": [
       116,
       129,
-      858,
-      1384
+      584,
+      1378
      ]
     },
     "how": "alpha"
@@ -13188,30 +13292,44 @@
  "empirestate": {
   "cut": "img/cut/ceb74a14e90d.webp",
   "ref": "img/ref/ceb74a14e90d.webp",
-  "cw": 171,
+  "cw": 149,
   "ch": 900,
-  "rw": 480,
+  "rw": 362,
   "rh": 720,
-  "file": "File:Empire State Building (aerial view).jpg",
-  "page": "https://commons.wikimedia.org/wiki/File:Empire_State_Building_(aerial_view).jpg",
-  "artist": "Sam Valadi",
-  "license": "Public domain",
+  "file": "File:Empire State Building From Rooftop 2019-10-05 19-11.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Empire_State_Building_From_Rooftop_2019-10-05_19-11.jpg",
+  "artist": "Axel Tschentscher",
+  "license": "CC BY-SA 4.0",
   "nonfree": false,
-  "score": -6.0,
+  "score": 0.0,
   "ev": {
-   "touch": [
-    "top"
-   ],
-   "cover": 0.035,
-   "fill": 0.154,
+   "touch": [],
+   "cover": 0.115,
+   "fill": 0.438,
    "bbox": [
-    384,
-    0,
-    628,
-    1295
+    140,
+    146,
+    422,
+    1854
    ]
   },
   "tried": [
+   {
+    "title": "File:View of Empire State Building from Rockefeller Center New York City dllu.jpg",
+    "score": -3.0,
+    "ev": {
+     "touch": [],
+     "cover": 0.001,
+     "fill": 0.371,
+     "bbox": [
+      472,
+      23,
+      485,
+      149
+     ]
+    },
+    "how": "rembg"
+   },
    {
     "title": "File:Empire State Building (aerial view).jpg",
     "score": -6.0,
@@ -13226,6 +13344,44 @@
       0,
       628,
       1295
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:Empire State Building pano.jpg",
+    "score": -99,
+    "ev": null,
+    "how": "rembg"
+   },
+   {
+    "title": "File:Manhattan from Weehawken, NJ.jpg",
+    "score": -1.0,
+    "ev": {
+     "touch": [],
+     "cover": 0.048,
+     "fill": 0.111,
+     "bbox": [
+      143,
+      31,
+      673,
+      238
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:Empire State Building From Rooftop 2019-10-05 19-11.jpg",
+    "score": 0.0,
+    "ev": {
+     "touch": [],
+     "cover": 0.115,
+     "fill": 0.438,
+     "bbox": [
+      140,
+      146,
+      422,
+      1854
      ]
     },
     "how": "rembg"
@@ -13634,155 +13790,254 @@
  "cntower": {
   "cut": "img/cut/1100c9596d35.webp",
   "ref": "img/ref/1100c9596d35.webp",
-  "cw": 876,
+  "cw": 92,
   "ch": 900,
-  "rw": 701,
+  "rw": 283,
   "rh": 720,
-  "file": "File:CN Tower logo.png",
-  "page": "https://commons.wikimedia.org/wiki/File:CN_Tower_logo.png",
-  "artist": "Unknown authorUnknown author",
-  "license": "Public domain",
+  "file": "File:CN Tower from Puente de Luz, Toronto, Ontario, 2025-08-25 01.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:CN_Tower_from_Puente_de_Luz,_Toronto,_Ontario,_2025-08-25_01.jpg",
+  "artist": "Chris Woodrich",
+  "license": "CC BY-SA 4.0",
   "nonfree": false,
   "score": 0.0,
   "ev": {
-   "touch": [
-    "top",
-    "bottom",
-    "left",
-    "right"
-   ],
-   "cover": 0.466,
-   "fill": 0.466,
+   "touch": [],
+   "cover": 0.064,
+   "fill": 0.397,
    "bbox": [
-    0,
-    0,
-    959,
-    985
+    382,
+    113,
+    578,
+    2044
    ]
   },
   "tried": [
    {
-    "title": "File:CN Tower logo.png",
-    "score": 0.0,
+    "title": "File:Toronto - ON - Toronto Harbourfront7.jpg",
+    "score": -3.0,
     "ev": {
-     "touch": [
-      "top",
-      "bottom",
-      "left",
-      "right"
-     ],
-     "cover": 0.466,
-     "fill": 0.466,
+     "touch": [],
+     "cover": 0.03,
+     "fill": 0.403,
      "bbox": [
-      0,
-      0,
-      959,
-      985
+      425,
+      74,
+      528,
+      1111
      ]
     },
-    "how": "alpha"
+    "how": "rembg"
+   },
+   {
+    "title": "File:Toronto - ON - CN Tower bei Nacht2.jpg",
+    "score": -3.0,
+    "ev": {
+     "touch": [],
+     "cover": 0.026,
+     "fill": 0.428,
+     "bbox": [
+      415,
+      244,
+      509,
+      1135
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:CN Tower, Toronto, Canada (Unsplash DJ kOgH5u0o).jpg",
+    "score": -3.0,
+    "ev": {
+     "touch": [
+      "bottom"
+     ],
+     "cover": 0.157,
+     "fill": 0.655,
+     "bbox": [
+      96,
+      134,
+      386,
+      639
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:Toronto - ON - Schaft des CN Tower.jpg",
+    "score": -6.0,
+    "ev": {
+     "touch": [
+      "bottom",
+      "right"
+     ],
+     "cover": 0.271,
+     "fill": 0.749,
+     "bbox": [
+      354,
+      272,
+      959,
+      637
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:CN Tower from Puente de Luz, Toronto, Ontario, 2025-08-25 01.jpg",
+    "score": 0.0,
+    "ev": {
+     "touch": [],
+     "cover": 0.064,
+     "fill": 0.397,
+     "bbox": [
+      382,
+      113,
+      578,
+      2044
+     ]
+    },
+    "how": "rembg"
    }
   ]
  },
  "petronas": {
   "cut": "img/cut/f5fb5cdcb916.webp",
   "ref": "img/ref/f5fb5cdcb916.webp",
-  "cw": 900,
-  "ch": 513,
-  "rw": 720,
-  "rh": 410,
-  "file": "File:Petronas Towers Logo.svg",
-  "page": "https://commons.wikimedia.org/wiki/File:Petronas_Towers_Logo.svg",
-  "artist": "Unknown authorUnknown author",
-  "license": "Public domain",
+  "cw": 359,
+  "ch": 900,
+  "rw": 343,
+  "rh": 720,
+  "file": "File:Petronas Twin Towers byD.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Petronas_Twin_Towers_byD.jpg",
+  "artist": "Alexander Vonbun",
+  "license": "CC BY-SA 2.5",
   "nonfree": false,
   "score": 0.0,
   "ev": {
-   "touch": [
-    "top",
-    "bottom",
-    "left",
-    "right"
-   ],
-   "cover": 0.196,
-   "fill": 0.196,
+   "touch": [],
+   "cover": 0.23,
+   "fill": 0.44,
    "bbox": [
-    0,
-    0,
-    959,
-    546
+    166,
+    230,
+    799,
+    1826
    ]
   },
   "tried": [
    {
-    "title": "File:Petronas Towers Logo.svg",
-    "score": 0.0,
+    "title": "File:Petronas Towers at Night - from the base upwards.jpg",
+    "score": -3.0,
     "ev": {
      "touch": [
-      "top",
+      "bottom"
+     ],
+     "cover": 0.123,
+     "fill": 0.47,
+     "bbox": [
+      162,
+      447,
+      525,
+      1444
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:Petronas Panorama II.jpg",
+    "score": -3.0,
+    "ev": {
+     "touch": [
+      "bottom"
+     ],
+     "cover": 0.35,
+     "fill": 0.452,
+     "bbox": [
+      64,
+      133,
+      875,
+      1579
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:Petronas Twin Towers (230715-1406).jpg",
+    "score": -9.0,
+    "ev": {
+     "touch": [
       "bottom",
       "left",
       "right"
      ],
-     "cover": 0.196,
-     "fill": 0.196,
+     "cover": 0.567,
+     "fill": 0.601,
      "bbox": [
       0,
-      0,
+      74,
       959,
-      546
+      1279
      ]
     },
-    "how": "alpha"
+    "how": "rembg"
+   },
+   {
+    "title": "File:Petronas Twin Towers byD.jpg",
+    "score": 0.0,
+    "ev": {
+     "touch": [],
+     "cover": 0.23,
+     "fill": 0.44,
+     "bbox": [
+      166,
+      230,
+      799,
+      1826
+     ]
+    },
+    "how": "rembg"
    }
   ]
  },
  "wtc1": {
   "cut": "img/cut/809709badf03.webp",
   "ref": "img/ref/809709badf03.webp",
-  "cw": 900,
-  "ch": 410,
-  "rw": 720,
-  "rh": 332,
-  "file": "File:One WTC logo.svg",
-  "page": "https://commons.wikimedia.org/wiki/File:One_WTC_logo.svg",
-  "artist": "One World Trade Center",
-  "license": "Public domain",
+  "cw": 464,
+  "ch": 900,
+  "rw": 480,
+  "rh": 720,
+  "file": "File:One World Trade Center, Financial District, Manhattan, New York.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:One_World_Trade_Center,_Financial_District,_Manhattan,_New_York.jpg",
+  "artist": "Christian David",
+  "license": "CC BY-SA 4.0",
   "nonfree": false,
   "score": 0.0,
   "ev": {
-   "touch": [
-    "left",
-    "right"
-   ],
-   "cover": 0.644,
-   "fill": 0.66,
+   "touch": [],
+   "cover": 0.247,
+   "fill": 0.545,
    "bbox": [
-    4,
-    4,
-    957,
-    437
+    134,
+    78,
+    700,
+    1181
    ]
   },
   "tried": [
    {
-    "title": "File:One WTC logo.svg",
+    "title": "File:One World Trade Center, Financial District, Manhattan, New York.jpg",
     "score": 0.0,
     "ev": {
-     "touch": [
-      "left",
-      "right"
-     ],
-     "cover": 0.644,
-     "fill": 0.66,
+     "touch": [],
+     "cover": 0.247,
+     "fill": 0.545,
      "bbox": [
-      4,
-      4,
-      957,
-      437
+      134,
+      78,
+      700,
+      1181
      ]
     },
-    "how": "alpha"
+    "how": "rembg"
    }
   ]
  },
@@ -14262,53 +14517,82 @@
  "shanghai": {
   "cut": "img/cut/4e1e4460d37c.webp",
   "ref": "img/ref/4e1e4460d37c.webp",
-  "cw": 900,
-  "ch": 349,
-  "rw": 720,
-  "rh": 279,
-  "file": "File:Shanghai Tower logo.png",
-  "page": "https://en.wikipedia.org/wiki/File:Shanghai_Tower_logo.png",
-  "artist": "",
-  "license": "Fair use",
-  "nonfree": true,
+  "cw": 308,
+  "ch": 900,
+  "rw": 480,
+  "rh": 720,
+  "file": "File:Shanghai Tower 2015.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Shanghai_Tower_2015.jpg",
+  "artist": "Baycrest",
+  "license": "CC BY-SA 2.5",
+  "nonfree": false,
   "score": 0.0,
   "ev": {
-   "touch": [
-    "top",
-    "bottom",
-    "left",
-    "right"
-   ],
-   "cover": 0.199,
-   "fill": 0.199,
+   "touch": [],
+   "cover": 0.204,
+   "fill": 0.498,
    "bbox": [
-    0,
-    0,
-    959,
-    371
+    259,
+    75,
+    697,
+    1360
    ]
   },
   "tried": [
    {
-    "title": "File:Shanghai Tower logo.png",
-    "score": 0.0,
+    "title": "File:Shanghai Jin Mao tower.jpg",
+    "score": -6.0,
     "ev": {
      "touch": [
       "top",
+      "bottom"
+     ],
+     "cover": 0.444,
+     "fill": 0.701,
+     "bbox": [
+      71,
+      0,
+      678,
+      1279
+     ]
+    },
+    "how": "rembg"
+   },
+   {
+    "title": "File:Shanghai Shanghai Tower 5166304.jpg",
+    "score": -9.0,
+    "ev": {
+     "touch": [
       "bottom",
       "left",
       "right"
      ],
-     "cover": 0.199,
-     "fill": 0.199,
+     "cover": 0.506,
+     "fill": 0.549,
      "bbox": [
       0,
-      0,
+      100,
       959,
-      371
+      1279
      ]
     },
-    "how": "alpha"
+    "how": "rembg"
+   },
+   {
+    "title": "File:Shanghai Tower 2015.jpg",
+    "score": 0.0,
+    "ev": {
+     "touch": [],
+     "cover": 0.204,
+     "fill": 0.498,
+     "bbox": [
+      259,
+      75,
+      697,
+      1360
+     ]
+    },
+    "how": "rembg"
    }
   ]
  },
