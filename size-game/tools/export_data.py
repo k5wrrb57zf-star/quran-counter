@@ -19,6 +19,7 @@ NOTE_AR = {
     "head-body + tail ≈ 76 cm": "الجسم مع الذيل ≈ 76 سم",
     "height at the withers": "الارتفاع عند الحارك (أعلى الكتفين)",
     "wingspan": "باع الجناحين",
+    "body length": "طول الجسم",
     "J300 generation": "الجيل J300",
     "city bus": "حافلة مدينة",
     "Super Heavy + Starship": "المعزّز + المركبة معًا",

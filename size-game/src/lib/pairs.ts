@@ -34,17 +34,25 @@ export function ratioOf(a: Subject, b: Subject, key: Key) {
   return Math.max(va, vb) / Math.min(va, vb);
 }
 
-function fitsDifficulty(a: Subject, b: Subject, R: number, d: Difficulty): boolean {
+const EPIC = new Set(["nature", "rocks", "landmarks", "giants", "space"]);
+type HardKind = "close" | "far" | "epic";
+
+function fitsDifficulty(a: Subject, b: Subject, R: number, d: Difficulty, hard: HardKind): boolean {
   const cross = a.cat !== b.cat;
+  if (d === "hard") {
+    // deceptively close, wildly different, or giant cross-overs (an asteroid vs a mountain…)
+    if (hard === "close") return cross && R >= 1.06 && R <= 1.45;
+    if (hard === "far") return R >= 40 && R <= 6000;
+    return cross && EPIC.has(a.cat) && EPIC.has(b.cat) && R >= 1.08 && R <= 300;
+  }
   switch (d) {
     case "easy":
       return R >= 1.3 && R <= 6 && a.tier === 1 && b.tier === 1 && a.conf !== "estimate" && b.conf !== "estimate";
     case "medium":
       // a wider range is fine when at least one side is very familiar
       return Math.min(a.tier, b.tier) === 1 ? R >= 1.2 && R <= 60 : R >= 1.25 && R <= 25;
-    case "hard":
-      return (R >= 1.06 && R <= 1.35 && cross) || (R >= 40 && R <= 40000);
   }
+  return false;
 }
 
 const SPAN: Record<Difficulty, number> = { easy: 1.5, medium: 2.1, hard: 2.8 };
@@ -71,6 +79,8 @@ export function makeRound(opts: GenOptions): Round {
     { strictCat: false, strictDiff: true, strictAvoid: false },
     { strictCat: false, strictDiff: false, strictAvoid: false },
   ];
+  const hr = rng();
+  const hard: HardKind = hr < 0.35 ? "close" : hr < 0.65 ? "far" : "epic";
   for (const st of attempts) {
     const poolA = st.strictCat ? inCat : SUBJECTS;
     for (let i = 0; i < 4000; i++) {
@@ -91,7 +101,7 @@ export function makeRound(opts: GenOptions): Round {
       if (!key) continue;
       const R = ratioOf(a, b, key);
       if (R < 1.04 || R > 40000) continue;
-      if (st.strictDiff && !fitsDifficulty(a, b, R, difficulty)) continue;
+      if (st.strictDiff && !fitsDifficulty(a, b, R, difficulty, hard)) continue;
       if (st.strictAvoid) {
         if (opts.avoidPairs?.has(pairKey(a, b))) continue;
         if (opts.avoidSubjects?.has(a.id) || opts.avoidSubjects?.has(b.id)) continue;

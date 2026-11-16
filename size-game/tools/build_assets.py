@@ -255,7 +255,6 @@ def build(sub, force=False, prev=None):
     specs = list(sub["img"])
     if "l" in sub["dims"] and "h" in sub["dims"]:
         specs.append(f"s:{sub['en']} side view")
-    specs.append(f"s:{sub['en']}")
     model = sub.get("model") or ("birefnet-general-lite" if sub["cat"] in HEAVY else "isnet-general-use")
     for spec in specs:
         try:
@@ -392,6 +391,9 @@ def main():
     prefetch([x for x in SUBJECTS if not ids or x["id"] in ids])
     for sub in SUBJECTS:
         if (ids and sub["id"] not in ids) or sub.get("skip"):
+            continue
+        heavy = (sub.get("model") or ("birefnet-general-lite" if sub["cat"] in HEAVY else "")) .startswith("birefnet")
+        if os.environ.get("SG_PASS") == "light" and heavy or os.environ.get("SG_PASS") == "heavy" and not heavy:
             continue
         r = build(sub, force=force and (not ids or sub["id"] in ids), prev=meta.get(sub["id"]))
         if r:
