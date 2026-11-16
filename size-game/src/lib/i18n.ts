@@ -58,7 +58,7 @@ const STR = {
   leaderboard: { ar: "لوحة الصدارة", en: "Leaderboard" },
   newBest: { ar: "رقم قياسي جديد!", en: "New personal best!" },
   resetStats: { ar: "مسح الإحصائيات", en: "Reset stats" },
-  confirmReset: { ar: "متأكد؟ سيتم حذف كل الإحصائيات.", en: "Are you sure? This deletes all stats." },
+  confirmReset: { ar: "اضغط مرة ثانية للتأكيد — سيتم حذف كل الإحصائيات", en: "Tap again to delete all stats" },
   players: { ar: "اللاعبون", en: "Players" },
   addPlayer: { ar: "إضافة لاعب", en: "Add player" },
   start: { ar: "ابدأ", en: "Start" },

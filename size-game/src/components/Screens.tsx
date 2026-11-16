@@ -79,6 +79,7 @@ export function Summary({ lang, results, players, isBest, daily, onHome, onAgain
 }
 
 export function Stats({ lang, saved, onBack, onReset }: { lang: Lang; saved: SavedState; onBack: () => void; onReset: () => void }) {
+  const [armed, setArmed] = useState(false);
   const avg = saved.rounds ? saved.sumAccuracy / saved.rounds : 0;
   const best = saved.games.reduce((m, g) => Math.max(m, g.score), 0);
   const tiles: Array<[string, string]> = [
@@ -112,7 +113,13 @@ export function Stats({ lang, saved, onBack, onReset }: { lang: Lang; saved: Sav
           ))}
         </ol>
       )}
-      <button className="btn btn-ghost danger" onClick={() => confirm(t(lang, "confirmReset")) && onReset()}>{t(lang, "resetStats")}</button>
+      <button
+        className="btn btn-ghost danger"
+        onClick={() => (armed ? (onReset(), setArmed(false)) : setArmed(true))}
+        onBlur={() => setArmed(false)}
+      >
+        {armed ? t(lang, "confirmReset") : t(lang, "resetStats")}
+      </button>
     </main>
   );
 }
