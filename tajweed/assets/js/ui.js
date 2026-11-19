@@ -33,7 +33,9 @@ export function playBtn(s) {
 }
 // تحويل {{2:255|...}} داخل النصوص إلى نص قرآني موثق
 export function rich(html) {
-  return String(html ?? '').replace(/\{\{(\d{1,3}:\d{1,3}\|[^{}]+?)\}\}/g, (_, k) => quranHTML(k));
+  const out = String(html ?? '').replace(/\{\{(\d{1,3}:\d{1,3}\|[^{}]+?)\}\}/g, (_, k) => quranHTML(k));
+  // توحيد الأرقام إلى الأرقام العربية المشرقية في النصوص دون الوسوم وخصائصها
+  return out.split(/(<[^>]+>)/).map((part) => (part.startsWith('<') ? part : part.replace(/&#?\w+;|\d/g, (m) => (m.length > 1 ? m : AR(m))))).join('');
 }
 
 // ---------- المتون ----------

@@ -66,7 +66,7 @@ export function madBarsHTML(rows = MAD_TABLE) {
     .map(
       (r) => `<div class="mad-row"><div class="lbl"><b>${esc(r.name)}</b></div><div class="mad-units">${[1, 2, 3, 4, 5, 6]
         .map((u) => `<i style="--i:${u}" class="${u <= r.min ? 'on' : u <= (r.extra || r.max) ? 'opt' : ''}"></i>`)
-        .join('')}</div><div class="val">${esc(r.note.split('،')[0])}</div></div>`,
+        .join('')}</div><div class="val">${AR(esc(r.note.split('،')[0]))}</div></div>`,
     )
     .join('')}</div>
     <div class="legend"><span><i style="background:var(--primary)"></i>المقدار الأدنى</span><span><i style="background:var(--gold)"></i>ما يجوز الزيادة إليه</span><span>كل خانة = حركة واحدة</span></div>

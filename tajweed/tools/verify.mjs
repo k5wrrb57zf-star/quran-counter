@@ -160,7 +160,28 @@ const ids = new Set();
 for (const p of PRACTICE) {
   if (ids.has(p.id)) err(`معرّف تدريب مكرر ${p.id}`);
   ids.add(p.id);
-  for (const t of p.targets || []) if (!t.rule || !t.hl) err(`تدريب ${p.id}: هدف ناقص`);
+  if (!p.targets?.length) err(`تدريب ${p.id}: بلا أهداف`);
+  for (const t of p.targets || []) {
+    if (!t.rule || !t.q || t.q.split('|').length !== 3) err(`تدريب ${p.id}: هدف ناقص`);
+    else if (t.q.split('|').slice(0, 2).join('|') !== p.q) err(`تدريب ${p.id}: عبارة الهدف لا تطابق عبارة التمرين`);
+  }
+  if (p.level === 3 && p.pick != null && !p.targets[p.pick]) err(`تدريب ${p.id}: رقم سؤال التمييز خارج الأهداف`);
+}
+
+// ---------------- قائمة التخزين للعمل دون اتصال (sw.js) ----------------
+{
+  const { statSync, readFileSync: rf } = await import('node:fs');
+  const { createHash } = await import('node:crypto');
+  const files = [];
+  const walkDir = (d) => { for (const f of readdirSync(join(root, d))) { const p = `${d}/${f}`; if (statSync(join(root, p)).isDirectory()) walkDir(p); else if (!/icon-512\.png$/.test(p)) files.push(p); } };
+  ['assets', 'content', 'data'].forEach(walkDir);
+  const list = ['./', './index.html', './manifest.webmanifest', ...files.sort().map((f) => './' + f)];
+  const hash = createHash('sha1');
+  for (const f of files) if (!f.endsWith('verification.json')) hash.update(rf(join(root, f)));
+  const swPath = join(root, 'sw.js');
+  let sw = rf(swPath, 'utf8');
+  sw = sw.replace(/const CACHE = '[^']*';/, `const CACHE = 'itqan-${hash.digest('hex').slice(0, 10)}';`).replace(/const PRECACHE = \[[^\n]*\];/, `const PRECACHE = ${JSON.stringify(list)};`);
+  writeFileSync(swPath, sw);
 }
 
 // ---------------- الإخراج ----------------

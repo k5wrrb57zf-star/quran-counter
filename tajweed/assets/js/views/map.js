@@ -38,7 +38,7 @@ export async function render(el) {
   ${mt.length ? `<div>أبيات التحفة غير المغطاة: ${mt.map(AR).join('، ')}</div>` : ''}${mj.length ? `<div>أبيات الجزرية غير المغطاة: ${mj.map(AR).join('، ')}</div>` : ''}</div>
   ${ABWAB.map((b) => `<h2 style="margin-top:26px">${AR(b.n)}. ${esc(b.title)}</h2>
     <div class="tbl-wrap"><table class="tbl cov-table"><thead><tr><th>المسألة</th><th>المتن</th><th>الفروع</th><th>الدروس</th><th>الحالة</th></tr></thead><tbody>
-    ${ms.filter((m) => m.bab === b.id).map((m) => `<tr><td><b>${esc(m.title)}</b></td><td class="small">${m.src.t ? `التحفة ${vrange(m.src.t)}` : ''}${m.src.t && m.src.j ? '<br>' : ''}${m.src.j ? `الجزرية ${vrange(m.src.j)}` : ''}</td><td class="small">${(m.branches || []).map(esc).join('، ')}</td><td class="small">${m.lessons.map((l) => `<a href="#/lesson/${l}">${esc(LESSONS[l].title)}</a>`).join('<br>')}</td><td>${lbl[m.st]}</td></tr>`).join('')}
+    ${ms.filter((m) => m.bab === b.id).map((m) => `<tr><td><b>${esc(m.title)}</b></td><td class="small">${m.src.t ? `<span class="nowrap">التحفة ${vrange(m.src.t)}</span>` : ''}${m.src.t && m.src.j ? '<br>' : ''}${m.src.j ? `<span class="nowrap">الجزرية ${vrange(m.src.j)}</span>` : ''}</td><td class="small">${(m.branches || []).map(esc).join('، ')}</td><td class="small">${m.lessons.map((l) => `<a href="#/lesson/${l}">${esc(LESSONS[l].title)}</a>`).join('<br>')}</td><td>${lbl[m.st]}</td></tr>`).join('')}
     </tbody></table></div>`).join('')}
   <h2 style="margin-top:30px">أبيات لا مسألة فيها</h2><p class="small muted">التحفة: ${OUTSIDE.t.map(AR).join('، ')} — الجزرية: ${OUTSIDE.j.map(AR).join('، ')} (البسملة، والحمد، والتسمية، والخاتمة).</p>
   <h2 style="margin-top:24px">موضوعات لم تُفرد بدروس التزامًا بنطاق المتنين</h2>

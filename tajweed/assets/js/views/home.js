@@ -36,15 +36,16 @@ export async function render(el) {
   </section>
 
   <div class="section-title"><h2>تقدّمك</h2></div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
+  <div class="grid g2">
     <div class="card row" style="gap:18px">${ring(pct)}<div><h3 style="margin:0">${AR(done)} من ${AR(total)} درسًا</h3><div class="muted small">أنهيت ${AR(Math.round(pct))}٪ من المنهج، وزرت ${AR(seen)} درسًا.</div><div class="bar" style="margin-top:10px;width:220px;max-width:100%"><i style="width:${pct}%"></i></div></div></div>
     ${last ? `<a class="card" href="#/lesson/${last}"><div class="muted small">آخر درس زرته</div><h3 style="margin:.2em 0">${esc(LESSONS[last].title)}</h3><div class="small muted">${esc(BAB[LESSONS[last].bab].title)}</div><div class="row" style="margin-top:8px"><span class="btn sm primary">متابعة الدرس</span></div></a>`
       : `<a class="card" href="#/lesson/${ORDER[0]}"><div class="muted small">ابدأ من هنا</div><h3 style="margin:.2em 0">${esc(LESSONS[ORDER[0]].title)}</h3><div class="small muted">الدرس الأول في المنهج</div></a>`}
-    <div class="stat-row" style="grid-template-columns:repeat(3,1fr)">
+  </div>
+  <div class="stat-row" style="margin-top:12px">
       <a class="stat" href="#/review?tab=mistakes"><b>${AR(mistakes)}</b><span>أخطاء للمراجعة</span></a>
       <a class="stat" href="#/review?tab=cards"><b>${AR(dueCards)}</b><span>بطاقات مستحقة</span></a>
       <div class="stat"><b>${AR(streak)}</b><span>أيام متتالية</span></div>
-    </div>
+      <a class="stat" href="#/practice"><b>${AR(store.s.practice.n)}</b><span>إجابة في التدريب القرآني</span></a>
   </div>
 
   <div class="section-title"><h2>مراجعة سريعة</h2><a href="#/review">كل المراجعات</a></div>

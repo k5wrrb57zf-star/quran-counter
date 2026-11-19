@@ -64,9 +64,9 @@ function buildQuestions(item, level) {
       const r = ruleOptions(t.rule);
       qs.push({ t: 'mcq', keep: true, q: `الموضع ${AR(k + 1)} من ${AR(item.targets.length)}: ما حكم الكلمة المظللة؟`, ex: t.q, o: r.o, a: r.a, e: RULES[t.rule].cause + '.', id: `p:${item.id}:r${k}`, lesson: lessonOf(t.rule), rule: t.rule });
     });
-    const pickT = item.targets[Math.floor(Math.random() * item.targets.length)];
-    const others = item.targets.filter((x) => x.rule !== pickT.rule);
-    if (others.length) {
+    // سؤال التمييز يكون على حكم لا يتكرر في العبارة (يحدده item.pick في بنك التدريب)
+    const pickT = item.pick != null ? item.targets[item.pick] : null;
+    if (pickT) {
       qs.push({ t: 'pick', q: `ميّز: اضغط على موضع «${RULES[pickT.rule].name}» دون غيره`, ex: item.q, answer: quranWords(pickT.q).h, e: `${RULES[pickT.rule].name}: ${RULES[pickT.rule].cause}.`, id: `p:${item.id}:m`, lesson: lessonOf(pickT.rule), rule: pickT.rule });
     }
   }
