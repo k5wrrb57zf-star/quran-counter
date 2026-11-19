@@ -1,6 +1,6 @@
 {
  "summary": {
-  "checkedAt": "2026-11-19T15:54:23.013Z",
+  "checkedAt": "2026-11-19T16:01:31.751Z",
   "tuhfa": {
    "verses": 61,
    "uncovered": []
@@ -12,16 +12,16 @@
   "masail": 98,
   "lessons": {
    "total": 52,
-   "complete": 40
+   "complete": 52
   },
   "quranRefs": {
-   "total": 353,
-   "verified": 353
+   "total": 583,
+   "verified": 583
   },
   "practice": 0,
-  "errors": 12,
+  "errors": 0,
   "warnings": 0,
-  "ok": false
+  "ok": true
  },
  "lessonStatus": {
   "madkhal-yajib": "complete",
@@ -64,32 +64,19 @@
   "tafkhim-maratib": "complete",
   "raa": "complete",
   "lam-jalala": "complete",
-  "tahdhir-sukun": "missing",
-  "dad-zha": "missing",
-  "zhaat": "missing",
-  "waqf-aqsam": "missing",
-  "waqf-qabih": "missing",
-  "waqf-roum": "missing",
-  "hamzat-wasl": "missing",
-  "maqtu-1": "missing",
-  "maqtu-2": "missing",
-  "maqtu-3": "missing",
-  "taat-1": "missing",
-  "taat-2": "missing"
+  "tahdhir-sukun": "complete",
+  "dad-zha": "complete",
+  "zhaat": "complete",
+  "waqf-aqsam": "complete",
+  "waqf-qabih": "complete",
+  "waqf-roum": "complete",
+  "hamzat-wasl": "complete",
+  "maqtu-1": "complete",
+  "maqtu-2": "complete",
+  "maqtu-3": "complete",
+  "taat-1": "complete",
+  "taat-2": "complete"
  },
- "errors": [
-  "درس معرّف بلا محتوى: tahdhir-sukun",
-  "درس معرّف بلا محتوى: dad-zha",
-  "درس معرّف بلا محتوى: zhaat",
-  "درس معرّف بلا محتوى: waqf-aqsam",
-  "درس معرّف بلا محتوى: waqf-qabih",
-  "درس معرّف بلا محتوى: waqf-roum",
-  "درس معرّف بلا محتوى: hamzat-wasl",
-  "درس معرّف بلا محتوى: maqtu-1",
-  "درس معرّف بلا محتوى: maqtu-2",
-  "درس معرّف بلا محتوى: maqtu-3",
-  "درس معرّف بلا محتوى: taat-1",
-  "درس معرّف بلا محتوى: taat-2"
- ],
+ "errors": [],
  "warnings": []
 }
